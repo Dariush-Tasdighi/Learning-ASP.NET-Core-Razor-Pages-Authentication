@@ -1,0 +1,22 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
+
+<footer class="footer navbar-dark bg-primary box-shadow fixed-bottom border-top py-2 text-muted">
+	<div class="container">
+		|
+		Domain: @(httpContextAccessor.HttpContext?.Request.Host.Value)
+
+		|
+		<environment include="Development" exclude="Production">
+			Development Mode
+		</environment>
+
+		<environment include="Production" exclude="Development">
+			Production Mode
+		</environment>
+
+		|
+		&copy;2022
+
+		|
+	</div>
+</footer>

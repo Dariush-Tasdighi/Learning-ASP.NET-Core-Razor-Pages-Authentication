@@ -1,0 +1,27 @@
+﻿<environment include="Development" exclude="Production">
+
+	@*
+		<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" asp-append-version="true" />
+	*@
+
+	<link href="https://bootswatch.com/5/darkly/bootstrap.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" asp-append-version="true" />
+
+</environment>
+
+<environment include="Production" exclude="Development">
+
+	@*
+		<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" asp-append-version="true" />
+	*@
+	
+	<link href="https://bootswatch.com/5/darkly/bootstrap.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" asp-append-version="true" />
+
+</environment>
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+@*
+	<link rel="stylesheet" href="~/@(nameof(Server)).styles.css" asp-append-version="true" />
+*@
