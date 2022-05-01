@@ -1,19 +1,34 @@
 ﻿<ul class="navbar-nav mb-2 mb-lg-0">
-	<li class="nav-item">
-		<a class="nav-link" asp-page="Account/Login">
-			Login
-		</a>
-	</li>
 
-	<li class="nav-item">
-		<a class="nav-link" asp-page="Account/Logout">
-			Logout
-		</a>
-	</li>
+	@if (User == null ||
+			User.Identity == null ||
+			User.Identity.IsAuthenticated == false)
+	{
+		<li class="nav-item">
+			<a class="nav-link" asp-page="Account/Register">
+				Register
+			</a>
+		</li>
 
-	<li class="nav-item">
-		<a class="nav-link" asp-page="Account/Register">
-			Register
-		</a>
-	</li>
+		<li class="nav-item">
+			<a class="nav-link" asp-page="Account/Login">
+				Login
+			</a>
+		</li>
+	}
+	else
+	{
+		<li class="nav-item">
+			<a class="nav-link" asp-page="Account/Profile">
+				Welcome @(User.Identity.Name)!
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link" asp-page="Account/Logout">
+				Logout
+			</a>
+		</li>
+	}
+
 </ul>
