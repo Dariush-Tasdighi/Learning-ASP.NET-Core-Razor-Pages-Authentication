@@ -1,17 +1,40 @@
 ﻿<ul class="navbar-nav mb-2 mb-lg-0">
 
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="accountNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			Admin
+		</a>
+		<ul class="dropdown-menu" aria-labelledby="accountNavbarDropdown">
+			<li><a class="dropdown-item" asp-page="/Admin/FileManager">File Manager</a></li>
+		</ul>
+	</li>
+
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="accountNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			Account
+		</a>
+		<ul class="dropdown-menu" aria-labelledby="accountNavbarDropdown">
+			<li><a class="dropdown-item" asp-page="/Account/UpdateProfile">Update Profile</a></li>
+			<li><a class="dropdown-item" asp-page="/Account/ChangePassword">Change Password</a></li>
+			<li><a class="dropdown-item" asp-page="/Account/ChangeEmailAddress">Change Email Address</a></li>
+			<li><hr class="dropdown-divider"></li>
+			<li><a class="dropdown-item text-danger" asp-page="/Account/Terminate">Terminate</a></li>
+			<li><a class="dropdown-item text-warning" asp-page="/Account/Deactivate">Deactivate</a></li>
+		</ul>
+	</li>
+
 	@if (User == null ||
-			User.Identity == null ||
-			User.Identity.IsAuthenticated == false)
+		User.Identity == null ||
+		User.Identity.IsAuthenticated == false)
 	{
 		<li class="nav-item">
-			<a class="nav-link" asp-page="Account/Register">
+			<a class="nav-link" asp-page="/Account/Register">
 				Register
 			</a>
 		</li>
 
 		<li class="nav-item">
-			<a class="nav-link" asp-page="Account/Login">
+			<a class="nav-link" asp-page="/Account/Login">
 				Login
 			</a>
 		</li>
@@ -19,13 +42,13 @@
 	else
 	{
 		<li class="nav-item">
-			<a class="nav-link" asp-page="Account/Profile">
+			<a class="nav-link" asp-page="/Account/Profile">
 				Welcome @(User.Identity.Name)!
 			</a>
 		</li>
 
 		<li class="nav-item">
-			<a class="nav-link" asp-page="Account/Logout">
+			<a class="nav-link" asp-page="/Account/Logout">
 				Logout
 			</a>
 		</li>

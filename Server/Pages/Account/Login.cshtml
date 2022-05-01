@@ -17,6 +17,8 @@
 					@(pageTitle)
 				</legend>
 
+				<input type="hidden" value="@(Model.ReturnUrl)" />
+
 				<div class="mb-3">
 					<label asp-for="ViewModel.Username" class="form-label"></label>
 
