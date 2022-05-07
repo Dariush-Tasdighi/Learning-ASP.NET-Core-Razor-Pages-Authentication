@@ -1,0 +1,59 @@
+﻿@page
+@model Server.Pages.ContactModel
+
+@{
+	var pageTitle = "Contact";
+
+	ViewData["PageTitle"] = pageTitle;
+}
+
+<form method="post">
+
+	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+		<div class="row">
+			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4 col-lg-6 offset-lg-3 p-lg-5 border border-2 rounded-3 shadow-lg">
+				<legend>
+					@(pageTitle)
+				</legend>
+
+				<hr />
+
+				<partial name="PartialViews/_DisplayPageMessages" />
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.FullName" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+						<input asp-for="ViewModel.FullName" class="form-control" />
+					</div>
+
+					<span asp-validation-for="ViewModel.FullName" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.Subject" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+						<input asp-for="ViewModel.Subject" class="form-control" />
+					</div>
+
+					<span asp-validation-for="ViewModel.Subject" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.Body" class="form-label"></label>
+					<input asp-for="ViewModel.Body" class="form-control" />
+					<span asp-validation-for="ViewModel.Body" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">Send</button>
+					<button type="reset" class="btn btn-secondary">Reset</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>

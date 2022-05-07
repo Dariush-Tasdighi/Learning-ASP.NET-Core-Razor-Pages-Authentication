@@ -10,7 +10,7 @@ namespace Server.Pages.Security
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Security.LoginViewModel ViewModel { get; set; }
+		public ViewModels.Account.LoginViewModel ViewModel { get; set; }
 
 		//public void OnGet()
 		//{

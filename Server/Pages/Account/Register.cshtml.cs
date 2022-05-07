@@ -8,7 +8,7 @@ namespace Server.Pages.Security
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Security.RegisterViewModel ViewModel { get; set; }
+		public ViewModels.Account.RegisterViewModel ViewModel { get; set; }
 
 		public void OnGet()
 		{
@@ -16,6 +16,10 @@ namespace Server.Pages.Security
 
 		public void OnPost()
 		{
+			if (ModelState.IsValid == false)
+			{
+				return;
+			}
 		}
 	}
 }
