@@ -19,14 +19,6 @@ namespace Infrastructure
 			ToastSuccess,
 		}
 
-		//public static readonly string PageErrorsKeyName = "PageErrors";
-		//public static readonly string PageWarningsKeyName = "PageWarnings";
-		//public static readonly string PageSuccessesKeyName = "PageSuccesses";
-
-		//public static readonly string ToastErrorsKeyName = "ToastErrors";
-		//public static readonly string ToastWarningsKeyName = "ToastWarnings";
-		//public static readonly string ToastSuccessesKeyName = "ToastSuccesses";
-
 		public BasePageModel() : base()
 		{
 		}
