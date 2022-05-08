@@ -9,81 +9,81 @@ namespace Server.Pages
 		public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
 		{
 			// **************************************************
-			Messages.AddPageError(message: null);
-			Messages.AddPageError(message: string.Empty);
-			Messages.AddPageError(message: "               ");
+			AddPageError(message: null);
+			AddPageError(message: string.Empty);
+			AddPageError(message: "               ");
 
-			Messages.AddPageError(message: "     Page     Error     (1)     ");
+			AddPageError(message: "     Page     Error     (1)     ");
 
-			Messages.AddPageError(message: "Page Error (2)");
-			Messages.AddPageError(message: "Page Error (3)");
+			AddPageError(message: "Page Error (2)");
+			AddPageError(message: "Page Error (3)");
 
-			Messages.AddPageError(message: "Page Error (3)");
+			AddPageError(message: "Page Error (3)");
 			// **************************************************
 
 			// **************************************************
-			Messages.AddPageWarning(message: null);
-			Messages.AddPageWarning(message: string.Empty);
-			Messages.AddPageWarning(message: "               ");
+			AddPageWarning(message: null);
+			AddPageWarning(message: string.Empty);
+			AddPageWarning(message: "               ");
 
-			Messages.AddPageWarning(message: "     Page     Warning     (1)     ");
+			AddPageWarning(message: "     Page     Warning     (1)     ");
 
-			Messages.AddPageWarning(message: "Page Warning (2)");
-			Messages.AddPageWarning(message: "Page Warning (3)");
+			AddPageWarning(message: "Page Warning (2)");
+			AddPageWarning(message: "Page Warning (3)");
 
-			Messages.AddPageWarning(message: "Page Warning (3)");
+			AddPageWarning(message: "Page Warning (3)");
 			// **************************************************
 
 			// **************************************************
-			Messages.AddPageSuccess(message: null);
-			Messages.AddPageSuccess(message: string.Empty);
-			Messages.AddPageSuccess(message: "               ");
+			AddPageSuccess(message: null);
+			AddPageSuccess(message: string.Empty);
+			AddPageSuccess(message: "               ");
 
-			Messages.AddPageSuccess(message: "     Page     Success     (1)     ");
+			AddPageSuccess(message: "     Page     Success     (1)     ");
 
-			Messages.AddPageSuccess(message: "Page Success (2)");
-			Messages.AddPageSuccess(message: "Page Success (3)");
+			AddPageSuccess(message: "Page Success (2)");
+			AddPageSuccess(message: "Page Success (3)");
 
-			Messages.AddPageSuccess(message: "Page Success (3)");
+			AddPageSuccess(message: "Page Success (3)");
 			// **************************************************
 
 			// **************************************************
-			Messages.AddToastError(message: null);
-			Messages.AddToastError(message: string.Empty);
-			Messages.AddToastError(message: "               ");
+			AddToastError(message: null);
+			AddToastError(message: string.Empty);
+			AddToastError(message: "               ");
 
-			Messages.AddToastError(message: "     Toast     Error     (1)     ");
+			AddToastError(message: "     Toast     Error     (1)     ");
 
-			Messages.AddToastError(message: "Toast Error (2)");
-			Messages.AddToastError(message: "Toast Error (3)");
+			AddToastError(message: "Toast Error (2)");
+			AddToastError(message: "Toast Error (3)");
 
-			Messages.AddToastError(message: "Toast Error (3)");
+			AddToastError(message: "Toast Error (3)");
 			// **************************************************
 
 			// **************************************************
-			Messages.AddToastWarning(message: null);
-			Messages.AddToastWarning(message: string.Empty);
-			Messages.AddToastWarning(message: "               ");
+			AddToastWarning(message: null);
+			AddToastWarning(message: string.Empty);
+			AddToastWarning(message: "               ");
 
-			Messages.AddToastWarning(message: "     Toast     Warning     (1)     ");
+			AddToastWarning(message: "     Toast     Warning     (1)     ");
 
-			Messages.AddToastWarning(message: "Toast Warning (2)");
-			Messages.AddToastWarning(message: "Toast Warning (3)");
+			AddToastWarning(message: "Toast Warning (2)");
+			AddToastWarning(message: "Toast Warning (3)");
 
-			Messages.AddToastWarning(message: "Toast Warning (3)");
+			AddToastWarning(message: "Toast Warning (3)");
 			// **************************************************
 
 			// **************************************************
-			Messages.AddToastSuccess(message: null);
-			Messages.AddToastSuccess(message: string.Empty);
-			Messages.AddToastSuccess(message: "               ");
+			AddToastSuccess(message: null);
+			AddToastSuccess(message: string.Empty);
+			AddToastSuccess(message: "               ");
 
-			Messages.AddToastSuccess(message: "     Toast     Success     (1)     ");
+			AddToastSuccess(message: "     Toast     Success     (1)     ");
 
-			Messages.AddToastSuccess(message: "Toast Success (2)");
-			Messages.AddToastSuccess(message: "Toast Success (3)");
+			AddToastSuccess(message: "Toast Success (2)");
+			AddToastSuccess(message: "Toast Success (3)");
 
-			Messages.AddToastSuccess(message: "Toast Success (3)");
+			AddToastSuccess(message: "Toast Success (3)");
 			// **************************************************
 
 			return RedirectToPage(pageName: "Contact");

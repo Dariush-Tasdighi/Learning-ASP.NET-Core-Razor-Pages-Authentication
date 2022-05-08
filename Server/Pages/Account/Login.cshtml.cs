@@ -128,7 +128,7 @@ namespace Server.Pages.Security
 			if (string.Compare(ViewModel.Username, "Dariush", ignoreCase: true) != 0 ||
 				string.Compare(ViewModel.Password, "1234512345", ignoreCase: true) != 0)
 			{
-				Messages.AddToastError
+				AddToastError
 					(message: "Wrong username and/or password!");
 
 				return Page();

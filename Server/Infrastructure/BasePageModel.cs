@@ -1,28 +1,127 @@
-﻿namespace Infrastructure
+﻿using System.Linq;
+
+namespace Infrastructure
 {
+	/// <summary>
+	/// Version 2.0
+	/// </summary>
 	public abstract class BasePageModel :
 		Microsoft.AspNetCore.Mvc.RazorPages.PageModel
 	{
+		public static readonly string PageErrorsKeyName = "PageErrors";
+		public static readonly string PageWarningsKeyName = "PageWarnings";
+		public static readonly string PageSuccessesKeyName = "PageSuccesses";
+
+		public static readonly string ToastErrorsKeyName = "ToastErrors";
+		public static readonly string ToastWarningsKeyName = "ToastWarnings";
+		public static readonly string ToastSuccessesKeyName = "ToastSuccesses";
+
 		public BasePageModel() : base()
 		{
 		}
 
-		public Messages Messages
+		public string? FixText(string? text)
 		{
-			get
+			if (string.IsNullOrWhiteSpace(text))
 			{
-				var messages =
-					TempData[key: Messages.KeyName] as Messages;
-
-				if (messages == null)
-				{
-					messages = new();
-
-					TempData[key: Messages.KeyName] = messages;
-				}
-
-				return messages;
+				return null;
 			}
+
+			text =
+				text.Trim();
+
+			while (text.Contains("  "))
+			{
+				text =
+					text.Replace("  ", " ");
+			}
+
+			return text;
+		}
+
+		private bool AddMessage(string key, string? message)
+		{
+			message =
+				FixText(text: message);
+
+			if (message == null)
+			{
+				return false;
+			}
+
+			// **************************************************
+			// به دلایل خیلی زیادی، کد ذیل به صورتی که ملاحظه می‌کنید
+			// نوشته شده است، لذا در آن هیچ‌گونه تغییری اعمال نکنید
+			// **************************************************
+			System.Collections.Generic.List<string>? list;
+
+			var tempDataItems =
+				(TempData[key: key] as
+				System.Collections.Generic.IList<string>);
+
+			if (tempDataItems == null)
+			{
+				list = new System.Collections.Generic.List<string>();
+			}
+			else
+			{
+				list =
+					tempDataItems as
+					System.Collections.Generic.List<string>;
+
+				if (list == null)
+				{
+					list = tempDataItems.ToList();
+				}
+			}
+
+			TempData[key: key] = list;
+			// **************************************************
+
+			if (list.Contains(item: message))
+			{
+				return false;
+			}
+
+			list.Add(item: message);
+
+			return true;
+		}
+
+		public bool AddPageError(string? message)
+		{
+			return AddMessage
+				(key: PageErrorsKeyName, message: message);
+		}
+
+		public bool AddPageWarning(string? message)
+		{
+			return AddMessage
+				(key: PageWarningsKeyName, message: message);
+		}
+
+		public bool AddPageSuccess(string? message)
+		{
+			return AddMessage
+				(key: PageSuccessesKeyName, message: message);
+		}
+
+		public bool AddToastError(string? message)
+		{
+			return AddMessage
+				(key: ToastErrorsKeyName, message: message);
+		}
+
+		public bool AddToastWarning(string? message)
+		{
+			return AddMessage
+				(key: ToastWarningsKeyName, message: message);
+		}
+
+		public bool AddToastSuccess(string? message)
+		{
+			return AddMessage
+				(key: ToastSuccessesKeyName, message: message);
 		}
 	}
 }
