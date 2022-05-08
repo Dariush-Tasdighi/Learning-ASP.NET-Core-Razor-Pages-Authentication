@@ -22,7 +22,8 @@ namespace Server.Pages
 			AddPageError(message: "Page Error (5)");
 			AddPageError(message: "Page Error (6)");
 
-			AddPageError(message: "Page Error (6)");
+			//AddPageError(message: "Page Error (6)");
+			AddMessage(type: MessageType.PageError, message: "Page Error (6)");
 			// **************************************************
 
 			// **************************************************
@@ -35,7 +36,8 @@ namespace Server.Pages
 			AddPageWarning(message: "Page Warning (5)");
 			AddPageWarning(message: "Page Warning (6)");
 
-			AddPageWarning(message: "Page Warning (6)");
+			//AddPageWarning(message: "Page Warning (6)");
+			AddMessage(type: MessageType.PageWarning, message: "Page Warning (6)");
 			// **************************************************
 
 			// **************************************************
@@ -48,7 +50,8 @@ namespace Server.Pages
 			AddPageSuccess(message: "Page Success (5)");
 			AddPageSuccess(message: "Page Success (6)");
 
-			AddPageSuccess(message: "Page Success (6)");
+			//AddPageSuccess(message: "Page Success (6)");
+			AddMessage(type: MessageType.PageSuccess, message: "Page Success (6)");
 			// **************************************************
 
 			// **************************************************
@@ -61,7 +64,8 @@ namespace Server.Pages
 			AddToastError(message: "Toast Error (5)");
 			AddToastError(message: "Toast Error (6)");
 
-			AddToastError(message: "Toast Error (6)");
+			//AddToastError(message: "Toast Error (6)");
+			AddMessage(type: MessageType.ToastError, message: "Toast Error (6)");
 			// **************************************************
 
 			// **************************************************
@@ -74,7 +78,8 @@ namespace Server.Pages
 			AddToastWarning(message: "Toast Warning (5)");
 			AddToastWarning(message: "Toast Warning (6)");
 
-			AddToastWarning(message: "Toast Warning (6)");
+			//AddToastWarning(message: "Toast Warning (6)");
+			AddMessage(type: MessageType.ToastWarning, message: "Toast Warning (6)");
 			// **************************************************
 
 			// **************************************************
@@ -87,7 +92,8 @@ namespace Server.Pages
 			AddToastSuccess(message: "Toast Success (5)");
 			AddToastSuccess(message: "Toast Success (6)");
 
-			AddToastSuccess(message: "Toast Success (6)");
+			//AddToastSuccess(message: "Toast Success (6)");
+			AddMessage(type: MessageType.ToastSuccess, message: "Toast Success (6)");
 			// **************************************************
 		}
 	}

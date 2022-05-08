@@ -8,13 +8,24 @@ namespace Infrastructure
 	public abstract class BasePageModel :
 		Microsoft.AspNetCore.Mvc.RazorPages.PageModel
 	{
-		public static readonly string PageErrorsKeyName = "PageErrors";
-		public static readonly string PageWarningsKeyName = "PageWarnings";
-		public static readonly string PageSuccessesKeyName = "PageSuccesses";
+		public enum MessageType : byte
+		{
+			PageError,
+			PageWarning,
+			PageSuccess,
 
-		public static readonly string ToastErrorsKeyName = "ToastErrors";
-		public static readonly string ToastWarningsKeyName = "ToastWarnings";
-		public static readonly string ToastSuccessesKeyName = "ToastSuccesses";
+			ToastError,
+			ToastWarning,
+			ToastSuccess,
+		}
+
+		//public static readonly string PageErrorsKeyName = "PageErrors";
+		//public static readonly string PageWarningsKeyName = "PageWarnings";
+		//public static readonly string PageSuccessesKeyName = "PageSuccesses";
+
+		//public static readonly string ToastErrorsKeyName = "ToastErrors";
+		//public static readonly string ToastWarningsKeyName = "ToastWarnings";
+		//public static readonly string ToastSuccessesKeyName = "ToastSuccesses";
 
 		public BasePageModel() : base()
 		{
@@ -88,40 +99,45 @@ namespace Infrastructure
 			return true;
 		}
 
+		public bool AddMessage(MessageType type, string? message)
+		{
+			return AddMessage(key: type.ToString(), message: message);
+		}
+
 		public bool AddPageError(string? message)
 		{
 			return AddMessage
-				(key: PageErrorsKeyName, message: message);
+				(key: MessageType.PageError.ToString(), message: message);
 		}
 
 		public bool AddPageWarning(string? message)
 		{
 			return AddMessage
-				(key: PageWarningsKeyName, message: message);
+				(key: MessageType.PageWarning.ToString(), message: message);
 		}
 
 		public bool AddPageSuccess(string? message)
 		{
 			return AddMessage
-				(key: PageSuccessesKeyName, message: message);
+				(key: MessageType.PageSuccess.ToString(), message: message);
 		}
 
 		public bool AddToastError(string? message)
 		{
 			return AddMessage
-				(key: ToastErrorsKeyName, message: message);
+				(key: MessageType.ToastError.ToString(), message: message);
 		}
 
 		public bool AddToastWarning(string? message)
 		{
 			return AddMessage
-				(key: ToastWarningsKeyName, message: message);
+				(key: MessageType.ToastWarning.ToString(), message: message);
 		}
 
 		public bool AddToastSuccess(string? message)
 		{
 			return AddMessage
-				(key: ToastSuccessesKeyName, message: message);
+				(key: MessageType.ToastSuccess.ToString(), message: message);
 		}
 	}
 }
