@@ -20,8 +20,11 @@
 			//tempData[key] =
 			//	System.Text.Json.JsonSerializer.Serialize(value: value, options: options);
 
-			tempData[key: key] =
-				Newtonsoft.Json.JsonConvert.SerializeObject(value: value);
+			tempData[key] =
+				System.Text.Json.JsonSerializer.Serialize(value: value);
+
+			//tempData[key: key] =
+			//	Newtonsoft.Json.JsonConvert.SerializeObject(value: value);
 		}
 
 		public static T? Get<T>
@@ -37,11 +40,11 @@
 				return null;
 			}
 
-			//var result =
-			//	System.Text.Json.JsonSerializer.Deserialize<T>((string)obj);
-
 			var result =
-				Newtonsoft.Json.JsonConvert.DeserializeObject<T>(value: (string)obj);
+				System.Text.Json.JsonSerializer.Deserialize<T>((string)obj);
+
+			//var result =
+			//	Newtonsoft.Json.JsonConvert.DeserializeObject<T>(value: (string)obj);
 
 			return result;
 		}
