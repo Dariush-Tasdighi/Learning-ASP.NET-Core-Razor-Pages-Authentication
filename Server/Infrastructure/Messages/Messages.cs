@@ -1,4 +1,4 @@
-﻿//namespace Infrastructure
+﻿//namespace Infrastructure.Messages
 //{
 //	/// <summary>
 //	/// Version 2.0
