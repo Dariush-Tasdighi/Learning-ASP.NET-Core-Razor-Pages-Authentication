@@ -97,6 +97,8 @@ builder.Services.AddRouting(options =>
 {
 	options.LowercaseUrls = true;
 	options.LowercaseQueryStrings = true;
+
+	//options.AppendTrailingSlash
 	//options.SuppressCheckForUnhandledSecurityMetadata = false;
 });
 // **************************************************

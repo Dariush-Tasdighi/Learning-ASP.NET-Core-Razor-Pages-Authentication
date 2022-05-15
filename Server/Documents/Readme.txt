@@ -1,2 +1,2 @@
 ﻿https://bootswatch.com/
-https://bootswatch.com/darkly/
+https://bootswatch.com/slate/
