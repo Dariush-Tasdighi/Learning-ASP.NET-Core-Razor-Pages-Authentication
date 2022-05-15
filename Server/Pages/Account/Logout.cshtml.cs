@@ -12,7 +12,8 @@ namespace Server.Pages.Account
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnGet()
 		{
 			// SignOutAsync -> using Microsoft.AspNetCore.Authentication;
-			await HttpContext.SignOutAsync(scheme: "Googooli");
+			await HttpContext.SignOutAsync
+				(scheme: Infrastructure.Security.Utility.AuthenticationScheme);
 
 			return RedirectToPage(pageName: "/Index");
 		}

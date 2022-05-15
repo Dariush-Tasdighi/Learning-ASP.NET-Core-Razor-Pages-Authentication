@@ -20,76 +20,140 @@ var builder =
 // **************************************************
 
 // **************************************************
+// Step (1)
+// **************************************************
+
+// **************************************************
 // Step (2)
 // **************************************************
-// https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0
-// https://www.red-gate.com/simple-talk/development/dotnet-development/using-auth-cookies-in-asp-net-core/
-// https://programmer.ink/think/understand-asp-net-core-cookie-authentication.html
-// https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/cookie.mdhttps://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/cookie.md
+//builder.Services
+//	.AddAuthentication()
+//	.AddCookie();
+// **************************************************
 
-// https://driesdeboosere.dev/blog/how-to-add-cookie-consent-in-aspnet-core-50/https://driesdeboosere.dev/blog/how-to-add-cookie-consent-in-aspnet-core-50/
+// **************************************************
+// Step (3)
+// **************************************************
+//builder.Services
+//	.AddAuthentication()
+//	.AddCookie(authenticationScheme: "Googooli");
+// **************************************************
+
+// **************************************************
+// Step (4)
+// **************************************************
+//builder.Services
+//	.AddAuthentication(defaultScheme: "Googooli")
+//	.AddCookie();
+// **************************************************
+
+// **************************************************
+// Step (5)
+// **************************************************
+//builder.Services
+//	.AddAuthentication(defaultScheme: "Googooli")
+//	.AddCookie(authenticationScheme: "Magooli");
+// **************************************************
+
+// **************************************************
+// Step (6)
+// **************************************************
+//builder.Services
+//	.AddAuthentication(defaultScheme: "Googooli")
+//	.AddCookie(authenticationScheme: "Googooli");
+// **************************************************
+
+// **************************************************
+// Step (6)
+// **************************************************
+builder.Services
+	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
+// **************************************************
+
+
+
+
+
+
+
+
+// Note: Does not work!
+// We should activate Step (4)
+
+
+
+
+
+
+
+
+
+// **************************************************
+// Step (2)
 // **************************************************
 // Replace 'Googooli' to:
 //Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme
 // **************************************************
-builder.Services.AddScoped
-	<Infrastructure.CustomCookieAuthenticationEvents>();
+//builder.Services.AddScoped
+//	<Infrastructure.CustomCookieAuthenticationEvents>();
 
-builder.Services
-	.AddAuthentication(defaultScheme: "Googooli")
-	.AddCookie(authenticationScheme: "Googooli", options =>
-	{
-		options.LoginPath = "/Account/Login";
-		options.ReturnUrlParameter = "ReturnUrl";
+//builder.Services
+//	.AddAuthentication(defaultScheme: "Googooli")
+//	.AddCookie(authenticationScheme: "Googooli", options =>
+//	{
+//		options.LoginPath = "/Account/Login";
+//		options.ReturnUrlParameter = "ReturnUrl";
 
-		options.LogoutPath = "/Account/Logout";
-		options.AccessDeniedPath = "/Account/AccessDenied";
+//		options.LogoutPath = "/Account/Logout";
+//		options.AccessDeniedPath = "/Account/AccessDenied";
 
-		options.ClaimsIssuer = "DTAT";
+//		options.ClaimsIssuer = "DTAT";
 
-		//options.Cookie.Domain;
-		//options.Cookie.MaxAge;
-		//options.Cookie.Expiration;
-		options.Cookie.Path = "/";
-		options.Cookie.Name = "Googooli";
-		options.Cookie.HttpOnly = true; // Default: 'true'
-		options.Cookie.IsEssential = true; // Default: 'true'
-		options.Cookie.SameSite =
-			Microsoft.AspNetCore.Http.SameSiteMode.Lax; // Default: 'Lax'
-		options.Cookie.SecurePolicy =
-			Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
+//		//options.Cookie.Domain;
+//		//options.Cookie.MaxAge;
+//		//options.Cookie.Expiration;
+//		options.Cookie.Path = "/";
+//		options.Cookie.Name = "Googooli";
+//		options.Cookie.HttpOnly = true; // Default: 'true'
+//		options.Cookie.IsEssential = true; // Default: 'true'
+//		options.Cookie.SameSite =
+//			Microsoft.AspNetCore.Http.SameSiteMode.Lax; // Default: 'Lax'
+//		options.Cookie.SecurePolicy =
+//			Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
 
-		options.ExpireTimeSpan =
-			System.TimeSpan.FromMinutes(value: 1); // Default: 14 Days
+//		options.ExpireTimeSpan =
+//			System.TimeSpan.FromMinutes(value: 1); // Default: 14 Days
 
-		options.SlidingExpiration = true; // Default: 'true'
+//		options.SlidingExpiration = true; // Default: 'true'
 
-		//options.ForwardSignIn
-		//options.ForwardForbid
-		//options.ForwardDefault
-		//options.ForwardSignOut
-		//options.ForwardChallenge
-		//options.ForwardAuthenticate
-		//options.ForwardDefaultSelector
+//		//options.ForwardSignIn
+//		//options.ForwardForbid
+//		//options.ForwardDefault
+//		//options.ForwardSignOut
+//		//options.ForwardChallenge
+//		//options.ForwardAuthenticate
+//		//options.ForwardDefaultSelector
 
-		//options.SessionStore
-		//options.CookieManager
-		//options.TicketDataFormat
-		//options.DataProtectionProvider
+//		//options.SessionStore
+//		//options.CookieManager
+//		//options.TicketDataFormat
+//		//options.DataProtectionProvider
 
-		options.EventsType =
-			typeof(Infrastructure.CustomCookieAuthenticationEvents);
+//		options.EventsType =
+//			typeof(Infrastructure.CustomCookieAuthenticationEvents);
 
-		//options.Events.OnCheckSlidingExpiration = (context) =>
-		//{
-		//	return System.Threading.Tasks.Task.CompletedTask;
-		//};
+//		//options.Events.OnCheckSlidingExpiration = (context) =>
+//		//{
+//		//	return System.Threading.Tasks.Task.CompletedTask;
+//		//};
 
-		options.Validate();
-	});
+//		options.Validate();
+//	});
 
-// Note: Does not work!
-// We should activate Step (3)
+//// Note: Does not work!
+//// We should write:
+////	app.UseAuthentication();
 // **************************************************
 
 // **************************************************
@@ -165,20 +229,28 @@ app.UseStaticFiles();
 // **************************************************
 
 // **************************************************
-// Step (3)
+// Step (7)
 // **************************************************
 // UseAuthentication() -> using Microsoft.AspNetCore.Builder;
 app.UseAuthentication();
+// **************************************************
+
+
+
+
+
+
+
 
 // Note: [Authorize] Attribute Does not work!
 // We should activate Step (4)
-// **************************************************
+
 
 // **************************************************
 // Step (4)
 // **************************************************
 // UseAuthentication() -> using Microsoft.AspNetCore.Builder;
-app.UseAuthorization();
+//app.UseAuthorization();
 // **************************************************
 
 // **************************************************
