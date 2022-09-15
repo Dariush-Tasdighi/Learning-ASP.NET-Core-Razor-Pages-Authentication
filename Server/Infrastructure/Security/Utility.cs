@@ -135,10 +135,7 @@ namespace Infrastructure.Security
 			var now =
 				System.DateTime.Now;
 
-			var temp =
-				new Microsoft.AspNetCore.Authentication.AuthenticationProperties();
-
-			var result =
+			var authenticationProperties =
 				new Microsoft.AspNetCore.Authentication.AuthenticationProperties
 				{
 					//RedirectUri, // Default: null
@@ -153,7 +150,7 @@ namespace Infrastructure.Security
 					AllowRefresh = true, // Default: null - Note: null is equal to true
 				};
 
-			return result;
+			return authenticationProperties;
 		}
 
 		/// <summary>
