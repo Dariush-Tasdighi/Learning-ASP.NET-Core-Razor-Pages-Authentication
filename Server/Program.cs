@@ -249,8 +249,8 @@ app.UseAuthentication();
 // **************************************************
 // Step (4)
 // **************************************************
-// UseAuthentication() -> using Microsoft.AspNetCore.Builder;
-//app.UseAuthorization();
+// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
+app.UseAuthorization();
 // **************************************************
 
 // **************************************************

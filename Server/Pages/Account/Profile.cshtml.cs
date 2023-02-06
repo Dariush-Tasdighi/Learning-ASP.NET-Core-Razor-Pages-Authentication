@@ -1,13 +1,13 @@
-namespace Server.Pages.Account
-{
-	public class ProfileModel : Infrastructure.BasePageModel
-	{
-		public ProfileModel() : base()
-		{
-		}
+namespace Server.Pages.Account;
 
-		public void OnGet()
-		{
-		}
+[Microsoft.AspNetCore.Authorization.Authorize]
+public class ProfileModel : Infrastructure.BasePageModel
+{
+	public ProfileModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }
