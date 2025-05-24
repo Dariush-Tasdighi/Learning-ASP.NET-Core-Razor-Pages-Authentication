@@ -1,13 +1,15 @@
-namespace Server.Pages.Account
-{
-	public class ChangePasswordModel : Infrastructure.BasePageModel
-	{
-		public ChangePasswordModel() : base()
-		{
-		}
+using Microsoft.AspNetCore.Authorization;
 
-		public void OnGet()
-		{
-		}
+namespace Server.Pages.Account;
+
+[Authorize]
+public class ChangePasswordModel : Infrastructure.BasePageModel
+{
+	public ChangePasswordModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

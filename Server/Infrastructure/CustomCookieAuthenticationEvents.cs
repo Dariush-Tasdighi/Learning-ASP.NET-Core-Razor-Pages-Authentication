@@ -1,35 +1,28 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Infrastructure
 {
-	public class CustomCookieAuthenticationEvents :
-		Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents
+	public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
 	{
-		public CustomCookieAuthenticationEvents() : base()
-		{
-		}
-
 		// Four callback points for login and logout are defined:
 
-		public override System.Threading.Tasks.Task SigningIn
-			(Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext context)
+		public override Task SigningIn(CookieSigningInContext context)
 		{
-			return base.SigningIn(context);
+			return base.SigningIn(context: context);
 		}
 
-		public override System.Threading.Tasks.Task SignedIn
-			(Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext context)
+		public override Task SignedIn(CookieSignedInContext context)
 		{
-			return base.SignedIn(context);
+			return base.SignedIn(context: context);
 		}
-		public override System.Threading.Tasks.Task SigningOut
-			(Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext context)
+		public override Task SigningOut(CookieSigningOutContext context)
 		{
-			return base.SigningOut(context);
+			return base.SigningOut(context: context);
 		}
 
-		public override async System.Threading.Tasks.Task ValidatePrincipal
-			(Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext context)
+		public override async Task ValidatePrincipal(CookieValidatePrincipalContext context)
 		{
 			var userPrincipal = context.Principal;
 
@@ -45,39 +38,34 @@ namespace Infrastructure
 
 				// SignOutAsync () -> using Microsoft.AspNetCore.Authentication;
 				await context.HttpContext.SignOutAsync
-					(Microsoft.AspNetCore.Authentication.Cookies
-					.CookieAuthenticationDefaults.AuthenticationScheme);
+					(CookieAuthenticationDefaults.AuthenticationScheme);
 			}
 		}
 
 		// Another 4 callback points for redirection
 
-		public override System.Threading.Tasks.Task RedirectToLogin
-			(Microsoft.AspNetCore.Authentication.RedirectContext
-			<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> context)
+		public override Task RedirectToLogin
+			(RedirectContext<CookieAuthenticationOptions> context)
 		{
-			return base.RedirectToLogin(context);
+			return base.RedirectToLogin(context: context);
 		}
 
-		public override System.Threading.Tasks.Task RedirectToReturnUrl
-			(Microsoft.AspNetCore.Authentication.RedirectContext
-			<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> context)
+		public override Task RedirectToReturnUrl
+			(RedirectContext<CookieAuthenticationOptions> context)
 		{
-			return base.RedirectToReturnUrl(context);
+			return base.RedirectToReturnUrl(context: context);
 		}
 
-		public override System.Threading.Tasks.Task RedirectToAccessDenied
-			(Microsoft.AspNetCore.Authentication.RedirectContext
-			<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> context)
+		public override Task RedirectToAccessDenied
+			(RedirectContext<CookieAuthenticationOptions> context)
 		{
-			return base.RedirectToAccessDenied(context);
+			return base.RedirectToAccessDenied(context: context);
 		}
 
-		public override System.Threading.Tasks.Task RedirectToLogout
-			(Microsoft.AspNetCore.Authentication.RedirectContext
-			<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> context)
+		public override Task RedirectToLogout
+			(RedirectContext<CookieAuthenticationOptions> context)
 		{
-			return base.RedirectToLogout(context);
+			return base.RedirectToLogout(context: context);
 		}
 	}
 }

@@ -1,7 +1,8 @@
+using Infrastructure;
+
 namespace Server.Pages.Account;
 
-[Microsoft.AspNetCore.Authorization.Authorize]
-public class ProfileModel : Infrastructure.BasePageModel
+public class ProfileModel : BasePageModel
 {
 	public ProfileModel() : base()
 	{

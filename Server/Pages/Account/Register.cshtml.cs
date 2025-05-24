@@ -1,25 +1,24 @@
-namespace Server.Pages.Security
+namespace Server.Pages.Security;
+
+public class RegisterModel : Infrastructure.BasePageModel
 {
-	public class RegisterModel : Infrastructure.BasePageModel
+	public RegisterModel() : base()
 	{
-		public RegisterModel() : base()
-		{
-			ViewModel = new();
-		}
+		ViewModel = new();
+	}
 
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Account.RegisterViewModel ViewModel { get; set; }
+	[Microsoft.AspNetCore.Mvc.BindProperty]
+	public ViewModels.Account.RegisterViewModel ViewModel { get; set; }
 
-		public void OnGet()
-		{
-		}
+	public void OnGet()
+	{
+	}
 
-		public void OnPost()
+	public void OnPost()
+	{
+		if (ModelState.IsValid == false)
 		{
-			if (ModelState.IsValid == false)
-			{
-				return;
-			}
+			return;
 		}
 	}
 }

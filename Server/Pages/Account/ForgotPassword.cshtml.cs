@@ -1,13 +1,12 @@
-namespace Server.Pages.Account
-{
-	public class ForgotPasswordModel : Infrastructure.BasePageModel
-	{
-		public ForgotPasswordModel() : base()
-		{
-		}
+namespace Server.Pages.Account;
 
-		public void OnGet()
-		{
-		}
+public class ForgotPasswordModel : Infrastructure.BasePageModel
+{
+	public ForgotPasswordModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

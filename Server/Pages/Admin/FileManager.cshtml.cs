@@ -1,14 +1,16 @@
-namespace Server.Pages.Admin
-{
-	[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin, Manager")]
-	public class FileManagerModel : Infrastructure.BasePageModel
-	{
-		public FileManagerModel() : base()
-		{
-		}
+using Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
-		public void OnGet()
-		{
-		}
+namespace Server.Pages.Admin;
+
+[Authorize(Roles = "Admin, Manager")]
+public class FileManagerModel : BasePageModel
+{
+	public FileManagerModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

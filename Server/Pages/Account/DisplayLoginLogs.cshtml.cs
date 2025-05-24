@@ -1,13 +1,15 @@
-namespace Server.Pages.Account
-{
-	public class DisplayLoginLogsModel : Infrastructure.BasePageModel
-	{
-		public DisplayLoginLogsModel() : base()
-		{
-		}
+using Microsoft.AspNetCore.Authorization;
 
-		public void OnGet()
-		{
-		}
+namespace Server.Pages.Account;
+
+[Authorize]
+public class DisplayLoginLogsModel : Infrastructure.BasePageModel
+{
+	public DisplayLoginLogsModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

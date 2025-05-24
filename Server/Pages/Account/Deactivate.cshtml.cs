@@ -1,13 +1,15 @@
-namespace Server.Pages.Account
-{
-	public class DeactivateModel : Infrastructure.BasePageModel
-	{
-		public DeactivateModel() : base()
-		{
-		}
+using Microsoft.AspNetCore.Authorization;
 
-		public void OnGet()
-		{
-		}
+namespace Server.Pages.Account;
+
+[Authorize]
+public class DeactivateModel : Infrastructure.BasePageModel
+{
+	public DeactivateModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

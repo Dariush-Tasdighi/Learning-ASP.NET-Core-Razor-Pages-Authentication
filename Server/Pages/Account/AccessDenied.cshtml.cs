@@ -1,13 +1,16 @@
-namespace Server.Pages.Account
-{
-	public class AccessDeniedModel : Infrastructure.BasePageModel
-	{
-		public AccessDeniedModel() : base()
-		{
-		}
+using Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
-		public void OnGet()
-		{
-		}
+namespace Server.Pages.Account;
+
+[Authorize]
+public class AccessDeniedModel : BasePageModel
+{
+	public AccessDeniedModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

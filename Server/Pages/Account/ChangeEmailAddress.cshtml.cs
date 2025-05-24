@@ -1,13 +1,15 @@
-namespace Server.Pages.Account
-{
-	public class ChangeEmailAddressModel : Infrastructure.BasePageModel
-	{
-		public ChangeEmailAddressModel() : base()
-		{
-		}
+using Microsoft.AspNetCore.Authorization;
 
-		public void OnGet()
-		{
-		}
+namespace Server.Pages.Account;
+
+[Authorize]
+public class ChangeEmailAddressModel : Infrastructure.BasePageModel
+{
+	public ChangeEmailAddressModel() : base()
+	{
+	}
+
+	public void OnGet()
+	{
 	}
 }

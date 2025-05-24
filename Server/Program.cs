@@ -1,22 +1,20 @@
 ﻿// **************************************************
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 // **************************************************
 
 // **************************************************
-var webApplicationOptions =
-	new Microsoft.AspNetCore.Builder.WebApplicationOptions
-	{
-		EnvironmentName =
-			System.Diagnostics.Debugger.IsAttached ?
-			Microsoft.Extensions.Hosting.Environments.Development
-			:
-			Microsoft.Extensions.Hosting.Environments.Production,
-	};
+var webApplicationOptions = new WebApplicationOptions
+{
+	EnvironmentName =
+		System.Diagnostics.Debugger.IsAttached ?
+		Microsoft.Extensions.Hosting.Environments.Development
+		:
+		Microsoft.Extensions.Hosting.Environments.Production,
+};
 
-var builder =
-	Microsoft.AspNetCore.Builder
-	.WebApplication.CreateBuilder(options: webApplicationOptions);
+var builder = WebApplication.CreateBuilder(options: webApplicationOptions);
 // **************************************************
 
 // **************************************************
@@ -28,7 +26,8 @@ var builder =
 // **************************************************
 //builder.Services
 //	.AddAuthentication()
-//	.AddCookie();
+//	.AddCookie()
+//	;
 // **************************************************
 
 // **************************************************
@@ -36,7 +35,8 @@ var builder =
 // **************************************************
 //builder.Services
 //	.AddAuthentication()
-//	.AddCookie(authenticationScheme: "Googooli");
+//	.AddCookie(authenticationScheme: "Googooli")
+//	;
 // **************************************************
 
 // **************************************************
@@ -44,7 +44,8 @@ var builder =
 // **************************************************
 //builder.Services
 //	.AddAuthentication(defaultScheme: "Googooli")
-//	.AddCookie();
+//	.AddCookie()
+//	;
 // **************************************************
 
 // **************************************************
@@ -52,7 +53,8 @@ var builder =
 // **************************************************
 //builder.Services
 //	.AddAuthentication(defaultScheme: "Googooli")
-//	.AddCookie(authenticationScheme: "Magooli");
+//	.AddCookie(authenticationScheme: "Magooli")
+//	;
 // **************************************************
 
 // **************************************************
@@ -60,15 +62,17 @@ var builder =
 // **************************************************
 //builder.Services
 //	.AddAuthentication(defaultScheme: "Googooli")
-//	.AddCookie(authenticationScheme: "Googooli");
+//	.AddCookie(authenticationScheme: "Googooli")
+//	;
 // **************************************************
 
 // **************************************************
-// Step (6)
+// Step (7)
 // **************************************************
 builder.Services
-	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
-	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
+	.AddAuthentication(defaultScheme: Utility.AuthenticationScheme)
+	.AddCookie(authenticationScheme: Utility.AuthenticationScheme)
+	;
 // **************************************************
 
 
@@ -168,27 +172,26 @@ builder.Services.AddRouting(options =>
 // **************************************************
 
 // **************************************************
-// AddHttpContextAccessor() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddHttpContextAccessor();
 // **************************************************
 
 // **************************************************
-// AddRazorPages() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddRazorPages();
 // **************************************************
 
 // **************************************************
-var app =
-	builder.Build();
+// **************************************************
+// **************************************************
+var app = builder.Build();
+// **************************************************
+// **************************************************
 // **************************************************
 
 // **************************************************
-// UseHttpsRedirection() -> using Microsoft.AspNetCore.Builder;
 app.UseHttpsRedirection();
 // **************************************************
 
 // **************************************************
-// UseStaticFiles() -> using Microsoft.AspNetCore.Builder;
 app.UseStaticFiles();
 // **************************************************
 
@@ -208,7 +211,6 @@ app.UseStaticFiles();
 
 //		OnDeleteCookie = (context) =>
 //		{
-
 //		},
 
 //		//ConsentCookie
@@ -231,14 +233,8 @@ app.UseStaticFiles();
 // **************************************************
 // Step (7)
 // **************************************************
-// UseAuthentication() -> using Microsoft.AspNetCore.Builder;
 app.UseAuthentication();
 // **************************************************
-
-
-
-
-
 
 
 
@@ -246,15 +242,14 @@ app.UseAuthentication();
 // We should activate Step (4)
 
 
+
 // **************************************************
 // Step (4)
 // **************************************************
-// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
 app.UseAuthorization();
 // **************************************************
 
 // **************************************************
-// MapRazorPages() -> using Microsoft.AspNetCore.Builder;
 app.MapRazorPages();
 // **************************************************
 

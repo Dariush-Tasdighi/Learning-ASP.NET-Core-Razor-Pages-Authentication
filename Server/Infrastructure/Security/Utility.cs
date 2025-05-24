@@ -1,175 +1,150 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System;
+using ViewModels.Account;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace Infrastructure.Security
+namespace Infrastructure.Security;
+
+public static class Utility : object
 {
-	public static class Utility
+	/// <summary>
+	/// Step (1)
+	/// </summary>
+	//public const string AuthenticationScheme = "Magooli";
+
+	/// <summary>
+	/// Step (9)
+	/// </summary>
+	//public const string AuthenticationScheme = "Googooli";
+
+	/// <summary>
+	/// Step (10)
+	/// </summary>
+	public const string AuthenticationScheme =
+		CookieAuthenticationDefaults.AuthenticationScheme;
+
+	public static List<Claim> GetClaims()
 	{
-		/// <summary>
-		/// Step (1)
-		/// </summary>
-		//public const string AuthenticationScheme = "Magooli";
+		var claims = new List<Claim>();
 
-		/// <summary>
-		/// Step (9)
-		/// </summary>
-		//public const string AuthenticationScheme = "Googooli";
+		Claim claim;
 
-		/// <summary>
-		/// Step (10)
-		/// </summary>
-		public const string AuthenticationScheme =
-			Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
+		// **************************************************
+		claim = new Claim(type: "FullName", value: "Mr. Dariush Tasdighi");
+		claims.Add(item: claim);
+		// **************************************************
 
-		static Utility()
+		// **************************************************
+		//claim = new Claim(type: "Name", value: "Dariush"); // کاملا غلط
+		claim = new Claim(type: ClaimTypes.Name, value: "Dariush");
+		claims.Add(item: claim);
+		// **************************************************
+
+		// **************************************************
+		claim = new Claim(type: ClaimTypes.Email, value: "DariushT@GMail.com");
+		claims.Add(item: claim);
+		// **************************************************
+
+		// **************************************************
+		claim = new Claim(type: ClaimTypes.Role, value: "Admin");
+		claims.Add(item: claim);
+		// **************************************************
+
+		// **************************************************
+		// داشت Role اگر بیش از یک
+		// **************************************************
+		//claim = new Claim(type: ClaimTypes.Role, value: "Manager");
+		//claims.Add(item: claim);
+		// **************************************************
+
+		return claims;
+	}
+
+	public static ClaimsIdentity GetClaimsIdentity()
+	{
+		var claims = GetClaims();
+
+		var claimsIdentity = new ClaimsIdentity
+			(claims: claims, authenticationType: AuthenticationScheme);
+
+		return claimsIdentity;
+	}
+
+	public static ClaimsPrincipal GetClaimsPrincipal()
+	{
+		var claimsIdentity = GetClaimsIdentity();
+
+		// **************************************************
+		//var claimsPrincipal = new ClaimsPrincipal(identity: claimsIdentity);
+		// **************************************************
+
+		// **************************************************
+		var claimsPrincipal = new ClaimsPrincipal();
+
+		claimsPrincipal.AddIdentity(identity: claimsIdentity);
+		// **************************************************
+
+		return claimsPrincipal;
+	}
+
+	/// <summary>
+	/// Step (1)
+	/// </summary>
+	public static async Task Login01(HttpContext httpContext)
+	{
+		var claimsPrincipal = GetClaimsPrincipal();
+
+		await httpContext.SignInAsync(principal: claimsPrincipal);
+	}
+
+	/// <summary>
+	/// Step (8)
+	/// </summary>
+	public static async Task Login02(HttpContext httpContext)
+	{
+		var claimsPrincipal = GetClaimsPrincipal();
+
+		await httpContext.SignInAsync
+			(scheme: AuthenticationScheme, principal: claimsPrincipal);
+	}
+
+	public static AuthenticationProperties GetAuthenticationProperties(LoginViewModel viewModel)
+	{
+		var now = DateTime.Now;
+
+		var authenticationProperties = new AuthenticationProperties
 		{
-		}
+			//RedirectUri, // Default: null
 
-		public static System.Collections.Generic
-			.List<System.Security.Claims.Claim> GetClaims()
-		{
-			var claims =
-				new System.Collections.Generic
-				.List<System.Security.Claims.Claim>();
+			//Items, // Default: Count = 0
+			//Parameters, // Default: Count = 0
 
-			System.Security.Claims.Claim claim;
+			IssuedUtc = now, // Default:  // Default: null
+			ExpiresUtc = now.AddSeconds(value: 10), // Default: null
 
-			// **************************************************
-			claim =
-				new System.Security.Claims.Claim
-				(type: "FullName", value: "Mr. Dariush Tasdighi");
+			IsPersistent = viewModel.RememberMe, // Default: false
+			AllowRefresh = true, // Default: null - Note: null is equal to true
+		};
 
-			claims.Add(item: claim);
-			// **************************************************
+		return authenticationProperties;
+	}
 
-			// **************************************************
-			claim =
-				new System.Security.Claims.Claim
-				(type: System.Security.Claims.ClaimTypes.Name, value: "Dariush");
+	/// <summary>
+	/// Step (11)
+	/// </summary>
+	public static async Task Login03
+		(HttpContext httpContext, LoginViewModel viewModel)
+	{
+		var claimsPrincipal = GetClaimsPrincipal();
 
-			claims.Add(item: claim);
-			// **************************************************
+		var authenticationProperties =
+			GetAuthenticationProperties(viewModel: viewModel);
 
-			// **************************************************
-			claim =
-				new System.Security.Claims.Claim
-				(type: System.Security.Claims.ClaimTypes.Email, value: "DariushT@GMail.com");
-
-			claims.Add(item: claim);
-			// **************************************************
-
-			// **************************************************
-			claim =
-				new System.Security.Claims.Claim
-				(type: System.Security.Claims.ClaimTypes.Role, value: "Admin");
-
-			claims.Add(item: claim);
-			// **************************************************
-
-			return claims;
-		}
-
-		public static System.Security.Claims.ClaimsIdentity GetClaimsIdentity()
-		{
-			var claims =
-				GetClaims();
-
-			var claimsIdentity =
-				new System.Security.Claims.ClaimsIdentity
-				(claims: claims, authenticationType: AuthenticationScheme);
-
-			return claimsIdentity;
-		}
-
-		public static System.Security.Claims
-			.ClaimsPrincipal GetClaimsPrincipal()
-		{
-			var claimsIdentity =
-				GetClaimsIdentity();
-
-			// **************************************************
-			//var claimsPrincipal =
-			//	new System.Security.Claims.ClaimsPrincipal(identity: claimsIdentity);
-			// **************************************************
-
-			// **************************************************
-			var claimsPrincipal =
-				new System.Security.Claims.ClaimsPrincipal();
-
-			claimsPrincipal.AddIdentity(identity: claimsIdentity);
-			// **************************************************
-
-			return claimsPrincipal;
-		}
-
-		/// <summary>
-		/// Step (1)
-		/// </summary>
-		public static async System.Threading.Tasks.Task
-			Login01(Microsoft.AspNetCore.Http.HttpContext httpContext)
-		{
-			var claimsPrincipal =
-				GetClaimsPrincipal();
-
-			// SignInAsync -> using Microsoft.AspNetCore.Authentication;
-			await httpContext.SignInAsync
-				(principal: claimsPrincipal);
-		}
-
-		/// <summary>
-		/// Step (8)
-		/// </summary>
-		public static async System.Threading.Tasks.Task
-			Login02(Microsoft.AspNetCore.Http.HttpContext httpContext)
-		{
-			var claimsPrincipal =
-				GetClaimsPrincipal();
-
-			// SignInAsync -> using Microsoft.AspNetCore.Authentication;
-			await httpContext.SignInAsync
-				(scheme: AuthenticationScheme, principal: claimsPrincipal);
-		}
-
-		public static Microsoft.AspNetCore.Authentication.AuthenticationProperties
-			GetAuthenticationProperties(ViewModels.Account.LoginViewModel viewModel)
-		{
-			var now =
-				System.DateTime.Now;
-
-			var authenticationProperties =
-				new Microsoft.AspNetCore.Authentication.AuthenticationProperties
-				{
-					//RedirectUri, // Default: null
-
-					//Items, // Default: Count = 0
-					//Parameters, // Default: Count = 0
-
-					IssuedUtc = now, // Default:  // Default: null
-					ExpiresUtc = now.AddSeconds(value: 10), // Default: null
-
-					IsPersistent = viewModel.RememberMe, // Default: false
-					AllowRefresh = true, // Default: null - Note: null is equal to true
-				};
-
-			return authenticationProperties;
-		}
-
-		/// <summary>
-		/// Step (11)
-		/// </summary>
-		public static async System.Threading.Tasks.Task Login03
-			(Microsoft.AspNetCore.Http.HttpContext httpContext,
-			ViewModels.Account.LoginViewModel viewModel)
-		{
-			var claimsPrincipal =
-				GetClaimsPrincipal();
-
-			var authenticationProperties =
-				GetAuthenticationProperties(viewModel: viewModel);
-
-			// SignInAsync -> using Microsoft.AspNetCore.Authentication;
-			await httpContext.SignInAsync
-				(scheme: AuthenticationScheme,
-				principal: claimsPrincipal, properties: authenticationProperties);
-		}
+		await httpContext.SignInAsync(scheme: AuthenticationScheme,
+			principal: claimsPrincipal, properties: authenticationProperties);
 	}
 }

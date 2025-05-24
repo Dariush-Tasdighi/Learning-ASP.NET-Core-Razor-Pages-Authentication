@@ -1,21 +1,23 @@
+using Infrastructure;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Server.Pages.Account
+namespace Server.Pages.Account;
+
+[Authorize]
+public class LogoutModel : BasePageModel
 {
-	public class LogoutModel : Infrastructure.BasePageModel
+	public LogoutModel() : base()
 	{
-		public LogoutModel() : base()
-		{
-		}
+	}
 
-		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnGet()
-		{
-			// SignOutAsync -> using Microsoft.AspNetCore.Authentication;
-			await HttpContext.SignOutAsync
-				(scheme: Infrastructure.Security.Utility.AuthenticationScheme);
+	public async Task<IActionResult> OnGet()
+	{
+		await HttpContext.SignOutAsync
+			(scheme: Infrastructure.Security.Utility.AuthenticationScheme);
 
-			return RedirectToPage(pageName: "/Index");
-		}
+		return RedirectToPage(pageName: "/Index");
 	}
 }
